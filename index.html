@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ex 7</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      .carousel-item > img {
+        height: 60vh;
+      }
+
+      #register {
+        border: 2px solid rgb(125, 192, 223);
+        border-radius: 8px;
+        padding: 20px;
+      }
+
+      tr > td:nth-child(2):before {
+        content: 'URK19CS';
+      }
+
+      section#main {
+        margin-top: 20px;
+      }
+
+      th {
+        background-color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="container navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img
+          src="data:image/png;base64,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"
+          width="60"
+          height="60"
+          class="d-inline-block"
+          alt=""
+        />
+        Valorant
+      </a>
+      <div
+        class="collapse navbar-collapse justify-content-end"
+        id="navbarNavDropdown"
+      >
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdownMenuLink"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Locations
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">India</a>
+              <a class="dropdown-item" href="#">US</a>
+              <a class="dropdown-item" href="#">Africa</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <form class="form-inline">
+              <div class="input-group">
+                <input
+                  class="form-control mr-sm-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button
+                  class="btn btn-outline-success my-2 my-sm-0"
+                  type="submit"
+                >
+                  Search
+                </button>
+              </div>
+            </form>
+          </li>
+        </ul>
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+
+    <header>
+      <div
+        id="carouselExampleControls"
+        class="carousel slide carousel-fade"
+        data-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              class="d-block w-100"
+              src="https://www.pinnacle.com/Cms_Data/Contents/Guest/Media/esports2017/Article-Images/Valorant/2020-Roles-in-Valorant/Esports-A-guide-to-VALORANT-roles-Article.jpg"
+              alt="First slide"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              class="d-block w-100"
+              src="https://i.ytimg.com/vi/5RSdUErFgX0/maxresdefault.jpg"
+              alt="Second slide"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              class="d-block w-100"
+              src="https://d.newsweek.com/en/full/1570653/valorant-project-gameplay-reveal-trailer.jpg"
+              alt="Third slide"
+            />
+          </div>
+        </div>
+        <a
+          class="carousel-control-prev"
+          href="#carouselExampleControls"
+          role="button"
+          data-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only"></span>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#carouselExampleControls"
+          role="button"
+          data-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only"></span>
+        </a>
+      </div>
+    </header>
+
+    <section id="main" class="container">
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <div class="row">
+            <div class="col">
+              <div class="mb-3">
+                <label class="form-label" for="inputName">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputName"
+                  placeholder="name"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="inputEmail">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="inputEmail"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="inputPassword">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="inputPassword"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="inputCity">City</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputCity"
+                  placeholder="city"
+                />
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="inputState"
+                  >Choose your state from the list:</label
+                >
+                <select class="form-select" id="inputState">
+                  <option>Tamil nadu</option>
+                  <option>kerala</option>
+                  <option>karnataka</option>
+                  <option>delhi</option>
+                </select>
+              </div>
+
+              <button type="submit" id="pvb" class="btn btn-primary">
+                Register
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <table class="table table-striped col-4">
+            <thead class="table-warning">
+              <tr>
+                <th scope="col">S.no</th>
+                <th scope="col">Reg</th>
+                <th scope="col">Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>2001</td>
+                <td>Daniel</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>2002</td>
+                <td>Ruhan Sam</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>2003</td>
+                <td>Aadthiya</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>2004</td>
+                <td>Harish</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>2005</td>
+                <td>Vishwa</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>2006</td>
+                <td>Selvin</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>2007</td>
+                <td>Sachin</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>2008</td>
+                <td>Kumaresan</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>2010</td>
+                <td>Nambi</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
